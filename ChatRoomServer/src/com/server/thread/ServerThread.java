@@ -25,7 +25,7 @@ public class ServerThread extends Thread
 	public Map<Integer, String> usersMap;
 	public BroadcastThread broadcastThread;
 	// 通信端口
-	private int Port = 5000;
+	private int port = 5000;
 	private boolean runFlag = false;
 
 	/**
@@ -46,7 +46,7 @@ public class ServerThread extends Thread
 
 		try
 		{
-			serverSocket = new ServerSocket(Port);
+			serverSocket = new ServerSocket(port);
 		} catch (IOException e)
 		{
 			// 不能同时启动两个服务器
