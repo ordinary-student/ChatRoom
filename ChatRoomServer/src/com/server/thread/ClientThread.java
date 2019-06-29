@@ -22,8 +22,8 @@ public class ClientThread extends Thread
 	public DataInputStream dis;
 	public DataOutputStream dos;
 	public String client_userID;
-	// 退出标志
-	private boolean exitFlag = false;
+	// 运行标志
+	private boolean runFlag = false;
 
 	/*
 	 * 构造方法
@@ -46,7 +46,7 @@ public class ClientThread extends Thread
 	@Override
 	public void run()
 	{
-		while (exitFlag)
+		while (runFlag)
 		{
 			try
 			{
@@ -90,7 +90,7 @@ public class ClientThread extends Thread
 				{
 					// 关闭通信
 					this.clientSocket.close();
-					exitFlag = false;
+					runFlag = false;
 				}
 
 			} catch (IOException e)
@@ -291,8 +291,8 @@ public class ClientThread extends Thread
 			}
 		}
 
-		// 设置退出标志
-		setExitFlag(false);
+		// 设置退出
+		setRunFlag(false);
 	}
 
 	/**
@@ -300,8 +300,8 @@ public class ClientThread extends Thread
 	 * 
 	 * @param b
 	 */
-	public void setExitFlag(boolean b)
+	public void setRunFlag(boolean b)
 	{
-		exitFlag = b;
+		runFlag = b;
 	}
 }

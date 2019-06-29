@@ -13,7 +13,7 @@ public class BroadcastThread extends Thread
 	private ClientThread clientThread;
 	private ServerThread serverThread;
 	private String message;
-	private boolean exitFlag = false;
+	private boolean runFlag = false;
 
 	/*
 	 * 构造方法
@@ -29,7 +29,7 @@ public class BroadcastThread extends Thread
 		// 新消息标志
 		boolean newMessageFlag = true;
 
-		while (exitFlag)
+		while (runFlag)
 		{
 			// 获取消息集合中的消息
 			synchronized (serverThread.messagesVector)
@@ -148,19 +148,19 @@ public class BroadcastThread extends Thread
 				// 清空用户集合
 				serverThread.usersMap.clear();
 				// 退出死循环
-				exitFlag = false;
+				runFlag = false;
 			}
 		}
 	}
 
 	/**
-	 * 设置退出标志
+	 * 设置运行标志
 	 * 
 	 * @param b
 	 */
-	public void setExitFlag(boolean b)
+	public void setRunFlag(boolean b)
 	{
-		exitFlag = b;
+		runFlag = b;
 	}
 
 	/**
@@ -168,6 +168,6 @@ public class BroadcastThread extends Thread
 	 */
 	public void stopBroadcastThread()
 	{
-		exitFlag = false;
+		runFlag = false;
 	}
 }

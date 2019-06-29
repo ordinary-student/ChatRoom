@@ -54,7 +54,7 @@ public class Server
 			// 创建服务器线程
 			serverThread = new ServerThread(serverFrame);
 			// 设置退出标志
-			serverThread.setExitFlag(true);
+			serverThread.setRunFlag(true);
 			// 启动服务器线程
 			serverThread.start();
 		} catch (Exception e)

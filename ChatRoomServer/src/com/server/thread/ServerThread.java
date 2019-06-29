@@ -26,7 +26,7 @@ public class ServerThread extends Thread
 	public BroadcastThread broadcastThread;
 	// 通信端口
 	private int Port = 5000;
-	private boolean exitFlag = false;
+	private boolean runFlag = false;
 
 	/**
 	 * 构造方法
@@ -56,7 +56,7 @@ public class ServerThread extends Thread
 
 		// 广播线程
 		broadcastThread = new BroadcastThread(this);
-		broadcastThread.setExitFlag(true);
+		broadcastThread.setRunFlag(true);
 		broadcastThread.start();
 	}
 
@@ -65,14 +65,14 @@ public class ServerThread extends Thread
 	{
 		Socket socket;
 
-		while (exitFlag)
+		while (runFlag)
 		{
 			try
 			{
 				// 如果通信关闭就退出
 				if (serverSocket.isClosed())
 				{
-					exitFlag = false;
+					runFlag = false;
 				} else
 				{
 					try
@@ -83,7 +83,7 @@ public class ServerThread extends Thread
 					{
 						// 出错就退出
 						socket = null;
-						exitFlag = false;
+						runFlag = false;
 					}
 
 					// 连接不为空
@@ -91,7 +91,7 @@ public class ServerThread extends Thread
 					{
 						// 创建客户端线程并启动
 						ClientThread clientThread = new ClientThread(socket, this);
-						clientThread.setExitFlag(true);
+						clientThread.setRunFlag(true);
 						clientThread.start();
 
 						// 添加客户端线程进集合
@@ -134,18 +134,18 @@ public class ServerThread extends Thread
 				e.printStackTrace();
 			}
 
-			// 设置退出标志
-			setExitFlag(false);
+			// 设置退出
+			setRunFlag(false);
 		}
 	}
 
 	/**
-	 * 设置退出标志
+	 * 设置运行标志
 	 * 
 	 * @param b
 	 */
-	public void setExitFlag(boolean b)
+	public void setRunFlag(boolean b)
 	{
-		exitFlag = b;
+		runFlag = b;
 	}
 }
