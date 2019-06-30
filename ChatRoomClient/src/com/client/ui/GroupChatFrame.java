@@ -60,10 +60,6 @@ public class GroupChatFrame extends KFrame
 		initUI(title);
 	}
 
-	public static void main(String[] args)
-	{
-		new GroupChatFrame(new Client(), "测试").setVisible(true);
-	}
 
 	/**
 	 * 初始化界面
